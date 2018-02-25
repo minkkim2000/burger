@@ -10,12 +10,12 @@
         <ul>
             {{#each burgers}}
             {{#unless this.devoured}}
-        <li class="burger-name">
-            <form action="/burgers/updateOne{{this.id}}?_method=PUT" method="POST">
-                {{this.burger_name}}
-            <input type='hidden' name='devoured' value='1'>
-            <button type='submit' class="btn btn-outline-success btn-sm">GRUB IT</button>
-            </form>
+            <li class="burger-name">
+                <form action="burgers/updateOne{{this.id}}?_method=PUT" method="POST">
+                    {{this.burger_name}}
+                <input type='hidden' name='devoured' value='true'>
+                <button type='submit' class="btn btn-outline-success btn-sm">GRUB IT</button>
+                </form>
             </li>
             {{/unless}}
             {{/each}}
@@ -24,12 +24,12 @@
 
 
     <div class="col-md-4 container textbox">
-        <form>
-            <fieldset class="form-group">
-            <h2> Add a Burger </h2>
-            <label>What kinda burger are you feeling like?</label>
-            <input type="text" placeholder="..eating like groceries?">
-            </fieldset>
+        <h2> Add a Burger </h2>
+            <form method="POST" action="burgers/insertOne">
+                <fieldset class="form-group">
+                <label>What kinda burger are you feeling like?</label>
+                <input type="text" placeholder="whatchu craving?">
+                </fieldset>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
@@ -43,7 +43,7 @@
             <li class="burger-name">
             {{this.burger_name}}
             <form action="/burgers/updateOne{{this.id}}?_method=PUT" method="POST">
-                <input type='hidden' name='devoured' value='0'>
+                <input type='hidden' name='devoured' value='false'>
                 <button type='submit' class="btn btn-outline-danger btn-sm">TOSS IT</button>
             </form>
             </li>
