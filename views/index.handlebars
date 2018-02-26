@@ -6,18 +6,21 @@
 
     <div class="row">
         <div class="col-md-4">
-        <h2>Feelin' Hungry?</h2>
+        <h2>Grubbb?</h2>
         <ul>
-            {{#each burgers}}
-            {{#unless this.devoured}}
-            <li class="burger-name">
-                <form action="burgers/updateOne{{this.id}}?_method=PUT" method="POST">
-                    {{this.burger_name}}
-                <input type='hidden' name='devoured' value='true'>
-                <button type='submit' class="btn btn-outline-success btn-sm">GRUB IT</button>
-                </form>
-            </li>
-            {{/unless}}
+            {{#each burger}}
+                {{#unless this.devoured}}
+                    <ul id="grub-list">
+                        <li class="burger-name">
+                            
+                            <form action="/burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
+                                <input type="hidden" name="devoured" value="true">
+                                {{this.burger_name}}
+                            <button type='submit' class="btn btn-outline-success btn-sm">GRUB IT</button>
+                            </form>
+                        </li>
+                    </ul>
+                {{/unless}}
             {{/each}}
         </ul>
     </div>
@@ -25,28 +28,22 @@
 
     <div class="col-md-4 container textbox">
         <h2> Add a Burger </h2>
-            <form method="POST" action="burgers/insertOne">
-                <fieldset class="form-group">
+            <form method="POST" action="/burgers/insertOne">
                 <label>What kinda burger are you feeling like?</label>
-                <input type="text" placeholder="whatchu craving?">
-                </fieldset>
+                <input type="text" name="burger_name" value="" placeholder="whatchu craving?">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
 
     <div class="col-md-4">
-        <h2>Devour It!</h2>
+        <h2>Happy Tummy</h2>
         <ul>
-        {{#each burgers}}
+        {{#each burger}}
             {{#if this.devoured}}
-            <li class="burger-name">
-            {{this.burger_name}}
-            <form action="/burgers/updateOne{{this.id}}?_method=PUT" method="POST">
-                <input type='hidden' name='devoured' value='false'>
-                <button type='submit' class="btn btn-outline-danger btn-sm">TOSS IT</button>
-            </form>
-            </li>
+                <li class="burger-name">
+                {{this.burger_name}}
+                </li>
             {{/if}}
         {{/each}}
         </ul>

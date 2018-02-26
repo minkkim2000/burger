@@ -34,3 +34,7 @@ ul{
 h2{
 	text-align: center;
 }
+
+#grub-list{
+	list-style-type: none;
+}
